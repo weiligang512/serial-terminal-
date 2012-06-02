@@ -1,0 +1,80 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+CC	Makefile	/^CC 		= $(CROSS_COMPILE)gcc$/;"	m
+CFLAG	Makefile	/^CFLAG	= -Wall$/;"	m
+CROSS_COMPILE	Makefile	/^CROSS_COMPILE 	:= arm-linux-$/;"	m
+GPIO_CLR	inc/485enable_user.h	25;"	d
+GPIO_IN	inc/485enable_user.h	22;"	d
+GPIO_OUT	inc/485enable_user.h	23;"	d
+GPIO_PIN_BIT	inc/485enable_user.h	32;"	d
+GPIO_SET	inc/485enable_user.h	24;"	d
+GPIO_UP_OFF	inc/485enable_user.h	31;"	d
+GPIO_UP_ON	inc/485enable_user.h	29;"	d
+GPK	inc/485enable_user.h	20;"	d
+GPM	inc/485enable_user.h	18;"	d
+GPN	inc/485enable_user.h	19;"	d
+GPP	inc/485enable_user.h	21;"	d
+INC	Makefile	/^INC 	:= .\/inc$/;"	m
+INCLUDE	Makefile	/^INCLUDE 	= $(wildcard $(INC)\/%.h)$/;"	m
+LD	Makefile	/^LD 		= $(CROSS_COMPILE)ld$/;"	m
+LDFLAG	Makefile	/^LDFLAG  =$/;"	m
+OBJ	Makefile	/^OBJ			= comm.o terminal_user.o 485enable_user.o$/;"	m
+OBJELF	Makefile	/^OBJELF		= terminal$/;"	m
+OP_GPIO	inc/485enable_user.h	27;"	d
+PortClose	inc/terminal_user.h	/^void PortClose();$/;"	p	signature:()
+PortClose	src/terminal_user.c	/^void PortClose()$/;"	f
+PortGetBaudRate	src/terminal_user.c	/^static int PortGetBaudRate(const PortInfo *Port)$/;"	f	file:	signature:(const PortInfo *Port)
+PortGetDataBit	src/terminal_user.c	/^static int PortGetDataBit(const PortInfo *Port)$/;"	f	file:	signature:(const PortInfo *Port)
+PortGetDev	src/terminal_user.c	/^static const char *PortGetDev(const PortInfo *Port)$/;"	f	file:	signature:(const PortInfo *Port)
+PortInfo	inc/terminal_user.h	/^}PortInfo;$/;"	t	typeref:struct:_PortInfo
+PortInformation	src/terminal_user.c	/^static const  PortInfo PortInformation = {2, 9600, 0, 8, 1, 0, 0};	\/\/ttyACS0 9600 N81 flow:none $/;"	v	file:
+PortInit	inc/terminal_user.h	/^int PortInit(void);$/;"	p	signature:(void)
+PortInit	src/terminal_user.c	/^int PortInit(void)$/;"	f	signature:(void)
+PortOpen	src/terminal_user.c	/^static int PortOpen(const PortInfo *Port)$/;"	f	file:	signature:(const PortInfo *Port)
+PortRecive	inc/terminal_user.h	/^int PortRecive(char *data, int datalen);$/;"	p	signature:(char *data, int datalen)
+PortRecive	src/terminal_user.c	/^int PortRecive(char *data, int datalen)$/;"	f	signature:(char *data, int datalen)
+PortSelect	src/terminal_user.c	/^static int PortSelect(int fd, long time)$/;"	f	file:	signature:(int fd, long time)
+PortSend	inc/terminal_user.h	/^int PortSend(char *data, int datalen);$/;"	p	signature:(char *data, int datalen)
+PortSend	src/terminal_user.c	/^int PortSend(char *data, int datalen)$/;"	f	signature:(char *data, int datalen)
+PortSetPara	src/terminal_user.c	/^static int PortSetPara(const PortInfo *Port)$/;"	f	file:	signature:(const PortInfo *Port)
+RS485ENRecive	inc/485enable_user.h	/^void RS485ENRecive(void);$/;"	p	signature:(void)
+RS485ENRecive	src/485enable_user.c	/^void RS485ENRecive(void)$/;"	f	signature:(void)
+RS485ENSend	inc/485enable_user.h	/^void RS485ENSend(void);$/;"	p	signature:(void)
+RS485ENSend	src/485enable_user.c	/^void RS485ENSend(void)$/;"	f	signature:(void)
+RS485IOENClose	inc/485enable_user.h	/^void RS485IOENClose(void);$/;"	p	signature:(void)
+RS485IOENClose	src/485enable_user.c	/^void RS485IOENClose(void)$/;"	f	signature:(void)
+RS485IOENDEV	inc/485enable_user.h	16;"	d
+RS485IOENInit	inc/485enable_user.h	/^int RS485IOENInit(void);$/;"	p	signature:(void)
+RS485IOENInit	src/485enable_user.c	/^int RS485IOENInit(void)$/;"	f	signature:(void)
+RS485IOENOpen	src/485enable_user.c	/^static int RS485IOENOpen(void)$/;"	f	file:	signature:(void)
+RS485IOENSetMode	src/485enable_user.c	/^static int RS485IOENSetMode(void)$/;"	f	file:	signature:(void)
+SOURCE	Makefile	/^SOURCE		= $(SRC)\/%.c$/;"	m
+SRC	Makefile	/^SRC 	:= .\/src$/;"	m
+SendRecive	src/comm.c	/^static int SendRecive(char *s, char *r)$/;"	f	file:	signature:(char *s, char *r)
+TIMEOUT	inc/terminal_user.h	17;"	d
+TTY_Dev	src/terminal_user.c	/^static const char *TTY_Dev[] = {"\/dev\/ttySAC0", "\/dev\/ttySAC1", "\/dev\/ttySAC2", "\/dev\/ttySAC3"};$/;"	v	file:
+_PortInfo	inc/terminal_user.h	/^typedef struct _PortInfo$/;"	s
+_PortInfo::baudrate	inc/terminal_user.h	/^	int baudrate;	\/\/baudrate$/;"	m	struct:_PortInfo	access:public
+_PortInfo::databit	inc/terminal_user.h	/^	int databit;	\/\/5-8$/;"	m	struct:_PortInfo	access:public
+_PortInfo::fclt	inc/terminal_user.h	/^	int fclt;		\/\/flow control, 0:noen, 1:hardware, 2:software$/;"	m	struct:_PortInfo	access:public
+_PortInfo::parity	inc/terminal_user.h	/^	int parity;		\/\/0:none, 1:old, 2:even$/;"	m	struct:_PortInfo	access:public
+_PortInfo::reservd	inc/terminal_user.h	/^	int reservd;	\/\/reserve enable ,set 0;$/;"	m	struct:_PortInfo	access:public
+_PortInfo::stopbit	inc/terminal_user.h	/^	int stopbit;	\/\/1-2$/;"	m	struct:_PortInfo	access:public
+_PortInfo::tty	inc/terminal_user.h	/^	int tty;	\/\/0-3 : ttySAC0-ttySAC3$/;"	m	struct:_PortInfo	access:public
+__485ENABLE_H__	inc/485enable_user.h	13;"	d
+__COMM_H__	inc/comm.h	13;"	d
+__TERMINAL_USER__	inc/terminal_user.h	13;"	d
+baudrate	inc/terminal_user.h	/^	int baudrate;	\/\/baudrate$/;"	m	struct:_PortInfo	access:public
+databit	inc/terminal_user.h	/^	int databit;	\/\/5-8$/;"	m	struct:_PortInfo	access:public
+fclt	inc/terminal_user.h	/^	int fclt;		\/\/flow control, 0:noen, 1:hardware, 2:software$/;"	m	struct:_PortInfo	access:public
+fd	src/485enable_user.c	/^static int fd;$/;"	v	file:
+fd	src/terminal_user.c	/^static int fd;$/;"	v	file:
+main	src/comm.c	/^int main(int argc, char *argv[])$/;"	f	signature:(int argc, char *argv[])
+parity	inc/terminal_user.h	/^	int parity;		\/\/0:none, 1:old, 2:even$/;"	m	struct:_PortInfo	access:public
+reservd	inc/terminal_user.h	/^	int reservd;	\/\/reserve enable ,set 0;$/;"	m	struct:_PortInfo	access:public
+stopbit	inc/terminal_user.h	/^	int stopbit;	\/\/1-2$/;"	m	struct:_PortInfo	access:public
+tty	inc/terminal_user.h	/^	int tty;	\/\/0-3 : ttySAC0-ttySAC3$/;"	m	struct:_PortInfo	access:public
