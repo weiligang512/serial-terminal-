@@ -6,6 +6,12 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 CC	Makefile	/^CC 		= $(CROSS_COMPILE)gcc$/;"	m
 CFLAG	Makefile	/^CFLAG	= -Wall$/;"	m
+CMDFAILED	inc/comm.h	38;"	d
+CMDSETPARA	inc/comm.h	32;"	d
+CMDSUCCESS	inc/comm.h	37;"	d
+COMMHEAD1	inc/comm.h	29;"	d
+COMMHEAD2	inc/comm.h	30;"	d
+CRC	src/comm.c	/^unsigned short CRC(unsigned char *pData, unsigned char len)$/;"	f	signature:(unsigned char *pData, unsigned char len)
 CROSS_COMPILE	Makefile	/^CROSS_COMPILE 	:= arm-linux-$/;"	m
 GPIO_CLR	inc/485enable_user.h	25;"	d
 GPIO_IN	inc/485enable_user.h	22;"	d
@@ -18,13 +24,20 @@ GPK	inc/485enable_user.h	20;"	d
 GPM	inc/485enable_user.h	18;"	d
 GPN	inc/485enable_user.h	19;"	d
 GPP	inc/485enable_user.h	21;"	d
+GetReciveData	src/comm.c	/^static int GetReciveData(char *buff, char *cmdbuff) $/;"	f	file:	signature:(char *buff, char *cmdbuff)
+HEAD1	inc/comm.h	15;"	d
+HEAD2	inc/comm.h	16;"	d
+IADRSENDLEN	inc/comm.h	59;"	d
 INC	Makefile	/^INC 	:= .\/inc$/;"	m
 INCLUDE	Makefile	/^INCLUDE 	= $(wildcard $(INC)\/%.h)$/;"	m
+IRDASEND	inc/comm.h	26;"	d
 LD	Makefile	/^LD 		= $(CROSS_COMPILE)ld$/;"	m
 LDFLAG	Makefile	/^LDFLAG  =$/;"	m
 OBJ	Makefile	/^OBJ			= comm.o terminal_user.o 485enable_user.o$/;"	m
 OBJELF	Makefile	/^OBJELF		= terminal$/;"	m
 OP_GPIO	inc/485enable_user.h	27;"	d
+OTHER	inc/comm.h	21;"	d
+PackgeCheck	src/comm.c	/^static int PackgeCheck(char *buff, unsigned short target)$/;"	f	file:	signature:(char *buff, unsigned short target)
 PortClose	inc/terminal_user.h	/^void PortClose();$/;"	p	signature:()
 PortClose	src/terminal_user.c	/^void PortClose()$/;"	f
 PortGetBaudRate	src/terminal_user.c	/^static int PortGetBaudRate(const PortInfo *Port)$/;"	f	file:	signature:(const PortInfo *Port)
@@ -37,10 +50,15 @@ PortInit	src/terminal_user.c	/^int PortInit(void)$/;"	f	signature:(void)
 PortOpen	src/terminal_user.c	/^static int PortOpen(const PortInfo *Port)$/;"	f	file:	signature:(const PortInfo *Port)
 PortRecive	inc/terminal_user.h	/^int PortRecive(char *data, int datalen);$/;"	p	signature:(char *data, int datalen)
 PortRecive	src/terminal_user.c	/^int PortRecive(char *data, int datalen)$/;"	f	signature:(char *data, int datalen)
+PortReciveSelect	inc/terminal_user.h	/^int PortReciveSelect(char *data, int datalen);$/;"	p	signature:(char *data, int datalen)
+PortReciveSelect	src/terminal_user.c	/^int PortReciveSelect(char *data, int datalen)$/;"	f	signature:(char *data, int datalen)
 PortSelect	src/terminal_user.c	/^static int PortSelect(int fd, long time)$/;"	f	file:	signature:(int fd, long time)
 PortSend	inc/terminal_user.h	/^int PortSend(char *data, int datalen);$/;"	p	signature:(char *data, int datalen)
 PortSend	src/terminal_user.c	/^int PortSend(char *data, int datalen)$/;"	f	signature:(char *data, int datalen)
 PortSetPara	src/terminal_user.c	/^static int PortSetPara(const PortInfo *Port)$/;"	f	file:	signature:(const PortInfo *Port)
+READTH	inc/comm.h	25;"	d
+READTIME	inc/comm.h	24;"	d
+READTIMEFRAMELEN	inc/comm.h	50;"	d
 RS485ENRecive	inc/485enable_user.h	/^void RS485ENRecive(void);$/;"	p	signature:(void)
 RS485ENRecive	src/485enable_user.c	/^void RS485ENRecive(void)$/;"	f	signature:(void)
 RS485ENSend	inc/485enable_user.h	/^void RS485ENSend(void);$/;"	p	signature:(void)
@@ -52,11 +70,23 @@ RS485IOENInit	inc/485enable_user.h	/^int RS485IOENInit(void);$/;"	p	signature:(v
 RS485IOENInit	src/485enable_user.c	/^int RS485IOENInit(void)$/;"	f	signature:(void)
 RS485IOENOpen	src/485enable_user.c	/^static int RS485IOENOpen(void)$/;"	f	file:	signature:(void)
 RS485IOENSetMode	src/485enable_user.c	/^static int RS485IOENSetMode(void)$/;"	f	file:	signature:(void)
+ReciveBuffer	src/comm.c	/^char ReciveBuffer[32];$/;"	v
+RecivePackge	src/comm.c	/^static int RecivePackge(char *buff, char *cmdbuff, unsigned short target)$/;"	f	file:	signature:(char *buff, char *cmdbuff, unsigned short target)
+SETPARALEN	inc/comm.h	43;"	d
+SETSYSPARA	inc/comm.h	22;"	d
+SETTIME	inc/comm.h	23;"	d
+SETTIMEFRAMELEN	inc/comm.h	49;"	d
 SOURCE	Makefile	/^SOURCE		= $(SRC)\/%.c$/;"	m
 SRC	Makefile	/^SRC 	:= .\/src$/;"	m
+SendBuffer	src/comm.c	/^char SendBuffer[32];$/;"	v
+SendPackge	src/comm.c	/^static int SendPackge(char *buff, unsigned char cmd, char *cmdbuff, unsigned short target)$/;"	f	file:	signature:(char *buff, unsigned char cmd, char *cmdbuff, unsigned short target)
 SendRecive	src/comm.c	/^static int SendRecive(char *s, char *r)$/;"	f	file:	signature:(char *s, char *r)
+THDATALEN	inc/comm.h	54;"	d
+THFRAMELEN	inc/comm.h	55;"	d
+TIMELEN	inc/comm.h	48;"	d
 TIMEOUT	inc/terminal_user.h	17;"	d
 TTY_Dev	src/terminal_user.c	/^static const char *TTY_Dev[] = {"\/dev\/ttySAC0", "\/dev\/ttySAC1", "\/dev\/ttySAC2", "\/dev\/ttySAC3"};$/;"	v	file:
+UsefulData	src/comm.c	/^char UsefulData[32]; $/;"	v
 _PortInfo	inc/terminal_user.h	/^typedef struct _PortInfo$/;"	s
 _PortInfo::baudrate	inc/terminal_user.h	/^	int baudrate;	\/\/baudrate$/;"	m	struct:_PortInfo	access:public
 _PortInfo::databit	inc/terminal_user.h	/^	int databit;	\/\/5-8$/;"	m	struct:_PortInfo	access:public
@@ -68,11 +98,14 @@ _PortInfo::tty	inc/terminal_user.h	/^	int tty;	\/\/0-3 : ttySAC0-ttySAC3$/;"	m	s
 __485ENABLE_H__	inc/485enable_user.h	13;"	d
 __COMM_H__	inc/comm.h	13;"	d
 __TERMINAL_USER__	inc/terminal_user.h	13;"	d
+auchCRCHi	src/comm.c	/^const unsigned char auchCRCHi[] =$/;"	v
+auchCRCLo	src/comm.c	/^const unsigned char auchCRCLo[] = {$/;"	v
 baudrate	inc/terminal_user.h	/^	int baudrate;	\/\/baudrate$/;"	m	struct:_PortInfo	access:public
 databit	inc/terminal_user.h	/^	int databit;	\/\/5-8$/;"	m	struct:_PortInfo	access:public
 fclt	inc/terminal_user.h	/^	int fclt;		\/\/flow control, 0:noen, 1:hardware, 2:software$/;"	m	struct:_PortInfo	access:public
 fd	src/485enable_user.c	/^static int fd;$/;"	v	file:
 fd	src/terminal_user.c	/^static int fd;$/;"	v	file:
+g_timeflag	src/comm.c	/^unsigned char g_timeflag = 0; \/\/发送数据的时间标志，接收数据时判断和发送时是否一致$/;"	v
 main	src/comm.c	/^int main(int argc, char *argv[])$/;"	f	signature:(int argc, char *argv[])
 parity	inc/terminal_user.h	/^	int parity;		\/\/0:none, 1:old, 2:even$/;"	m	struct:_PortInfo	access:public
 reservd	inc/terminal_user.h	/^	int reservd;	\/\/reserve enable ,set 0;$/;"	m	struct:_PortInfo	access:public

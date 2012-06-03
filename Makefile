@@ -20,10 +20,10 @@ $(OBJELF): $(OBJ)
 	$(CC) $(LDFLAG) -I$(INC) $(OBJ) -o $(OBJELF)
 
 terminal_user.o: $(SRC)/terminal_user.c $(INC)/terminal_user.h
-	$(CC) $(CFLAG) -I$(INC) -c $< -o $@ #terminal_user.o
+	$(CC) $(CFLAG) -I$(INC) -c $< -o $@ 
 
 485enable_user.o: $(SRC)/485enable_user.c $(INC)/485enable_user.h
-	$(CC) $(CFLAG) -I$(INC) -c $< -o $@ #485enable_user.o
+	$(CC) $(CFLAG) -I$(INC) -c $< -o $@ 
 
 comm.o: $(SRC)/comm.c $(INC)/comm.h
 	$(CC) $(CFLAG) -I$(INC) -c $< -o $@

@@ -49,6 +49,7 @@ int RS485IOENInit(void)
 {
 	RS485IOENOpen();
 	RS485IOENSetMode();
+	usleep(100);
 
 	return 0;
 }

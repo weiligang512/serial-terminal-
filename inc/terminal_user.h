@@ -14,7 +14,7 @@
 
 
 
-#define TIMEOUT		300	//1000 MS
+#define TIMEOUT		400	//1000 MS
 
 typedef struct _PortInfo
 {
@@ -30,6 +30,7 @@ typedef struct _PortInfo
 
 
 int PortSend(char *data, int datalen);
+int PortReciveSelect(char *data, int datalen);
 int PortRecive(char *data, int datalen);
 int PortInit(void);
 void PortClose();

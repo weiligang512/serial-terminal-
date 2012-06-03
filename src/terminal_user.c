@@ -186,7 +186,7 @@ static int PortSetPara(const PortInfo *Port)
 	
 	//other attributions
 	termios_new.c_cflag &= ~OPOST;
-	termios_new.c_cc[VMIN] = 10;
+	termios_new.c_cc[VMIN] = 1;
 	termios_new.c_cc[VTIME] = 1;
 
 	tcflush(fd, TCIFLUSH);
@@ -252,6 +252,8 @@ int PortSend(char *data, int datalen)
 	RS485ENSend();
 	len = write(fd, data, datalen);
 
+	usleep(500);
+	RS485ENRecive();
 	if (len == datalen)
 	{
 		return len;
@@ -262,11 +264,9 @@ int PortSend(char *data, int datalen)
 
 		return -1;
 	}
-	usleep(100);
-	RS485ENRecive();
 }
 
-int PortRecive(char *data, int datalen)
+int PortReciveSelect(char *data, int datalen)
 {
 	int len = 0;
 	int res;
@@ -276,9 +276,22 @@ int PortRecive(char *data, int datalen)
 	res = PortSelect(fd, TIMEOUT);
 	if (!res)
 	{
+		usleep(40000);
 		len = read(fd, data, datalen);
 	}
+	printf("port recive select len %d\n", len);
+	return len;
+}
 
+int PortRecive(char *data, int datalen)
+{
+	int len = 0;
+	
+	RS485ENRecive();
+
+	len = read(fd, data, datalen);
+
+	printf("port recive len %d\n", len);
 	return len;
 }
 
@@ -287,7 +300,7 @@ int PortInit(void)
 	int res;
  
 	RS485IOENInit();
-	RS485ENRecive();
+	RS485ENSend();
 
 	fd = PortOpen(&PortInformation);
 	if (fd < 0)

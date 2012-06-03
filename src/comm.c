@@ -26,7 +26,9 @@
 
 
 unsigned char g_timeflag = 0; //发送数据的时间标志，接收数据时判断和发送时是否一致
-
+char SendBuffer[32];
+char ReciveBuffer[32];
+char UsefulData[32]; 
 
 /************************CRC*************************/
 const unsigned char auchCRCHi[] =
@@ -112,13 +114,17 @@ unsigned short CRC(unsigned char *pData, unsigned char len)
  * ****************************************************************/
 static int SendRecive(char *s, char *r)
 {
-	int len;
+	int len, res;
 	int count;
 
 	len = 0;
 	count = 0;
 SendAgain:
-	len += PortSend(&s[len], s[2] - len);
+	res = PortSend(&s[len], s[2] - len);
+	if (res > 0)
+	{
+		len += res; 
+	}
 	if (len < s[2])
 	{
 		count++;
@@ -130,16 +136,23 @@ SendAgain:
 
 		return -1;
 	}
+	printf("len = %d\n", len);
 
 	len = 0;
 	count = 0;
+//	len += PortReciveSelect(&r[len], 32);
 ReciveAgain:
-	len += PortRecive(&r[len], 32);
+	res = PortReciveSelect(&r[len], 32);
+	if (res > 0)
+	{
+		len += res;
+	}
+	printf("len = %d\n", len);
 	if (len >= 3)
 	{
 		if (r[0] == 0x55 && r[1] == 0xaa)
 		{
-			if (len == r[2])
+			if (len >= r[2])
 			{
 				return 0;
 			}
@@ -165,6 +178,8 @@ ReciveAgain:
 		}
 		goto ReciveAgain;
 	}
+
+	return -1;
 }
 
 
@@ -223,10 +238,10 @@ static int SendPackge(char *buff, unsigned char cmd, char *cmdbuff, unsigned sho
 			break;
 		}
 	}
+	buff[2] = len+2;
 	CRCData = CRC((unsigned char *)buff, len);
-	buff[len++] = CRCData & 0xff;
 	buff[len++] = CRCData >> 8;
-	buff[2] = len;
+	buff[len++] = CRCData & 0xff;
 
 	return len;
 }
@@ -241,13 +256,23 @@ static int PackgeCheck(char *buff, unsigned short target)
 {
 	unsigned short CRCData;
 	int len;
+	int i;
 
-	len = buff[2];
+	for (i = 0; i < buff[2]; i++)
+	{
+		printf("buff[%d]=%x ", i, buff[i]);
+	}
+	len = buff[2] - 2;
+	printf("buff[2]=%d\n", buff[2]);
+
 	CRCData = CRC((unsigned char *)buff, len);
-	if (((CRCData && 0xff) == buff[len - 2]) && ((CRCData >> 8) == buff[len - 1]))
+	printf("CRCData=%x\n", CRCData);
+	printf("target=%x\n", target);
+
+	if (((CRCData & 0xff) == buff[len+1]) && ((CRCData >> 8) == buff[len]))
 	{
 		//CRC校验成功
-		if (((target >> 8) == buff[3]) && ((target && 0xff) == buff[4]))
+		if (((target >> 8) == buff[3]) && ((target & 0xff) == buff[4]))
 		{
 			//目标地址相同
 			if (g_timeflag == buff[5])
@@ -258,7 +283,19 @@ static int PackgeCheck(char *buff, unsigned short target)
 					return 0;
 				}
 			}
+			else
+			{
+				printf("timeflag failed\n");
+			}
 		}
+		else
+		{
+			printf("target failed\n");
+		}
+	}
+	else
+	{
+		printf("CRC failed\n");
 	}
 
 	return -1;
@@ -296,7 +333,7 @@ static int GetReciveData(char *buff, char *cmdbuff)
 		break;
 
 		case READTH :  // 温湿度
-			len = 5;
+			len = THDATALEN;
 			memcpy(cmdbuff, &buff[8], len);
 			
 		break;
@@ -335,8 +372,45 @@ static int RecivePackge(char *buff, char *cmdbuff, unsigned short target)
 
 int main(int argc, char *argv[])
 {
+	int res, i;
+
 	PortInit();
+	
+	while (1)
+	{
+		printf("*********************************************\n");
+		memset(SendBuffer, 0, sizeof(SendBuffer));
+		memset(ReciveBuffer, 0, sizeof(ReciveBuffer));
+		memset(UsefulData, 0, sizeof(UsefulData));
+		SendPackge(SendBuffer, READTH, NULL, 0x0002);
+		res = SendRecive(SendBuffer, ReciveBuffer);
+		if (!res)
+		{
+			res = RecivePackge(ReciveBuffer, UsefulData, 0x0002);
+			if (res != -1)
+			{
+				for (i = 0; i < THDATALEN; i++)
+				{
+					printf("data[i]=%x", UsefulData[i]);
+				}
+			}
+			else
+			{
+				fprintf(stderr, "check recive buffer failed\n");
+			}
+		}
+		else
+		{
+			fprintf(stderr, "Recive data, time out\n");
+		}
+
+		printf("*********************************************\n");
+		sleep(3);
+	}
+
 
 	RS485IOENClose();
 	PortClose();
+
+	return 0;
 }
